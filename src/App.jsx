@@ -4,6 +4,7 @@ import Login from './components/LogIn';
 import ChangePassword from './components/Changepassword';
 import Movies from './components/Movies';
 import Movie from './components/Movie';
+/* import Comments from './components/Comments'; */
 
 function App() {
 	return (

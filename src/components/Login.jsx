@@ -31,7 +31,6 @@ function Login() {
 			localStorage.setItem('token', result.token);
 			navigate('/');
 		}
-
 	}
 
 	return (
@@ -46,7 +45,7 @@ function Login() {
 				<br />
 				<input name='password' type='password' value={password} onChange={e => setPassword(e.target.value)} />
 				<br />
-				<button>OK</button>
+				<button>Login</button>
 			</form>
 		</>
 	);

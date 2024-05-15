@@ -10,23 +10,21 @@ function Movies() {
 	useEffect(() => {
 		fetch(url)
 			.then(res => res.json())
-			.then(json => setMovies(json.results))
-			.then(() => {
-				navigate(`/movie/${movie.id}`);
-			});
-	}, []);
+			.then(json => setMovies(json.results));
+	}, [url]);
 
-	function handleMovieClick(movie) {
+	function MovieClick(movie) {
 		const apiUrl = 'http://localhost:3000/movies';
 		/* 		const token = localStorage.getItem('token'); */
 		const body = {
-			idTMDB: movie.id,
+			idTMDB: movie.id.toString(),
 			title: movie.title,
 			img: movie.backdrop_path,
 			release_date: movie.release_date,
-			overview: movie.overview,
-			vote_average: movie.vote_average,
+			plot: movie.overview,
+			score: movie.vote_average,
 		};
+
 		const options = {
 			method: 'POST',
 			headers: {
@@ -35,7 +33,11 @@ function Movies() {
 			},
 			body: JSON.stringify(body),
 		};
-		fetch(apiUrl, options).then(response => response.json());
+		fetch(apiUrl, options)
+			.then(() => {
+				navigate(`/movie/${movie.id}`);
+			})
+			.then(response => response.json());
 	}
 
 	console.log(movies);
@@ -45,7 +47,7 @@ function Movies() {
 			<h1>Movies</h1>
 			<ul style={{ display: 'flex', flexWrap: 'wrap', padding: 0 }}>
 				{movies.map(movie => (
-					<li key={movie.id} onClick={() => handleMovieClick(movie)}>
+					<li key={movie.id} onClick={() => MovieClick(movie)}>
 						<img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} />
 						<p>
 							{movie.title} - {movie.vote_average.toFixed(1)}

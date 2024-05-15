@@ -57,7 +57,7 @@ function Register() {
 				<br />
 				<input name='country' value={country} onChange={e => setCountry(e.target.value)} />
 				<br />
-				<button>OK</button>
+				<button>Register</button>
 			</form>
 		</>
 	);
