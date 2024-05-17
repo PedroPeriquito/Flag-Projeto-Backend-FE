@@ -4,11 +4,12 @@ import Login from './components/LogIn';
 import ChangePassword from './components/Changepassword';
 import Movies from './components/Movies';
 import Movie from './components/Movie';
-/* import Comments from './components/Comments'; */
+import Navbar from './components/Navbar';
 
 function App() {
 	return (
 		<BrowserRouter>
+			<Navbar />
 			<Routes>
 				<Route path='/' element={<Movies />} />
 				<Route path='/register' element={<Register />} />

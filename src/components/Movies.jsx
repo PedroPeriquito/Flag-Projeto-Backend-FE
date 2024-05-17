@@ -46,6 +46,7 @@ function Movies() {
 		<div>
 			<h1>Movies</h1>
 			<ul style={{ display: 'flex', flexWrap: 'wrap', padding: 0 }}>
+		
 				{movies.map(movie => (
 					<li key={movie.id} onClick={() => MovieClick(movie)}>
 						<img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} />

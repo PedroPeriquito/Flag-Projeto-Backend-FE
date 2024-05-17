@@ -28,9 +28,9 @@ function Movie() {
 				</div>
 			)}
 			{movie == null && <div>Loading...</div>}
+			<Comments />;
 		</>
 	);
 }
-<Comments />;
 
 export default Movie;
