@@ -4,7 +4,7 @@ function ChangePassword() {
 	const [password, setPassword] = useState('');
 	const [newPassword, setNewPassword] = useState('');
 	const [verifyPassword, setVerifyPassword] = useState('');
-	let token = localStorage.getItem("token");
+	const token = localStorage.getItem("token");
 
 	async function handleSubmit(event) {
 		event.preventDefault();

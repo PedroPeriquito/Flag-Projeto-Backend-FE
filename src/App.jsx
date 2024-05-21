@@ -4,18 +4,18 @@ import Login from './components/LogIn';
 import ChangePassword from './components/Changepassword';
 import Movies from './components/Movies';
 import Movie from './components/Movie';
-import Navbar from './components/Navbar';
+import Search from './components/Search';
 
 function App() {
 	return (
 		<BrowserRouter>
-			<Navbar />
 			<Routes>
 				<Route path='/' element={<Movies />} />
 				<Route path='/register' element={<Register />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/changepassword' element={<ChangePassword />} />
 				<Route path='/movie/:id' element={<Movie />} />
+				<Route path='/search' element={<Search />} />
 			</Routes>
 		</BrowserRouter>
 	);

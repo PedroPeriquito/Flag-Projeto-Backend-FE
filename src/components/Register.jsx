@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Register() {
 	const navigate = useNavigate();
@@ -58,6 +58,10 @@ function Register() {
 				<input name='country' value={country} onChange={e => setCountry(e.target.value)} />
 				<br />
 				<button>Register</button>
+				<p>Already have an account?</p>
+				<Link to='/login'>
+					<button>Login</button>
+				</Link>
 			</form>
 		</>
 	);

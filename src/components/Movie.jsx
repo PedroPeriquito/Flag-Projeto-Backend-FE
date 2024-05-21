@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Comments from './Comments';
+import WriteComment from './WriteComment';
+import Navbar from './Navbar';
 
 function Movie() {
 	const [movie, setMovie] = useState(null);
@@ -18,6 +20,7 @@ function Movie() {
 
 	return (
 		<>
+			<Navbar />
 			{movie != null && (
 				<div>
 					<img src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.title} />
@@ -28,6 +31,7 @@ function Movie() {
 				</div>
 			)}
 			{movie == null && <div>Loading...</div>}
+			<WriteComment />
 			<Comments />;
 		</>
 	);

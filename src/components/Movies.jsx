@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 function Movies() {
 	const navigate = useNavigate();
@@ -13,7 +14,7 @@ function Movies() {
 			.then(json => setMovies(json.results));
 	}, [url]);
 
-	function MovieClick(movie) {
+	function movieClick(movie) {
 		const apiUrl = 'http://localhost:3000/movies';
 		/* 		const token = localStorage.getItem('token'); */
 		const body = {
@@ -44,11 +45,11 @@ function Movies() {
 
 	return (
 		<div>
+			<Navbar />
 			<h1>Movies</h1>
 			<ul style={{ display: 'flex', flexWrap: 'wrap', padding: 0 }}>
-		
 				{movies.map(movie => (
-					<li key={movie.id} onClick={() => MovieClick(movie)}>
+					<li key={movie.id} onClick={() => movieClick(movie)}>
 						<img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} />
 						<p>
 							{movie.title} - {movie.vote_average.toFixed(1)}
