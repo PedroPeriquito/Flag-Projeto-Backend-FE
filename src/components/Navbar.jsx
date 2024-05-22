@@ -25,6 +25,9 @@ const Nav = () => {
 
 	return (
 		<div>
+			<Link to='/'>
+				<button>Home</button>
+			</Link>
 			<form onSubmit={handleSubmit}>
 				<input type='text' value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder='Seach Movies' />
 				<button type='submit'>Search</button>
@@ -42,6 +45,12 @@ const Nav = () => {
 				)}
 				{isLoggedIn && (
 					<>
+						<Link to='/watched'>
+							<button>Watched Movies</button>
+						</Link>
+						<Link to='/plantowatch'>
+							<button>Watchlist</button>
+						</Link>
 						<Link to='/changepassword'>
 							<button>Change Password</button>
 						</Link>
