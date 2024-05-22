@@ -29,7 +29,7 @@ const Nav = () => {
 				<button>Home</button>
 			</Link>
 			<form onSubmit={handleSubmit}>
-				<input type='text' value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder='Seach Movies' />
+				<input type='text' value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder='Search Movies' />
 				<button type='submit'>Search</button>
 			</form>
 			<li>

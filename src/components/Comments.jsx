@@ -29,7 +29,7 @@ function Comments() {
 						{comments.map((comment, index) => (
 							<li key={index}>
 								<p>{comment.user[0].name}</p>
-								<p>Rating: {comment.score?.toFixed(1)}</p>
+								<p>Rating: {comment.score}</p>
 								<p>{comment.review}</p>
 							</li>
 						))}
