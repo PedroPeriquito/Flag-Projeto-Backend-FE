@@ -1,12 +1,13 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Navbar from './Navbar';
+
 
 function search() {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const [movies, setMovies] = useState([]);
 	const apiKey = import.meta.env.VITE_TMDB_KEY;
+	const baseUrl = import.meta.env.VITE_BASE_URL;
 
 	const search = location.search;
 
@@ -19,7 +20,7 @@ function search() {
 	}, []);
 
 	function movieClick(movie) {
-		const apiUrl = 'http://localhost:3000/movies';
+		const apiUrl = `${baseUrl}/movies`;
 		/* 		const token = localStorage.getItem('token'); */
 		const body = {
 			idTMDB: movie.id.toString(),
@@ -47,7 +48,7 @@ function search() {
 
 	return (
 		<div>
-			<Navbar />
+		
 			<h1>Movies</h1>
 			<ul style={{ display: 'flex', flexWrap: 'wrap', padding: 0 }}>
 				{movies.map(movie => (

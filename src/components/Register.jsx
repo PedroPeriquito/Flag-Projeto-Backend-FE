@@ -1,12 +1,18 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
+import { Dropdown } from 'primereact/dropdown';
+import { InputText } from 'primereact/inputtext';
+
+import { Button } from 'primereact/button';
+
 function Register() {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [name, setName] = useState('');
 	const [country, setCountry] = useState('');
+	const baseUrl = import.meta.env.VITE_BASE_URL;
 
 	async function handleSubmit(event) {
 		event.preventDefault();
@@ -28,7 +34,7 @@ function Register() {
 
 		console.log(options);
 
-		const url = 'http://localhost:3000/register';
+		const url = `${baseUrl}/register`;
 		const response = await fetch(url, options);
 
 		if (response.ok) {
@@ -36,33 +42,46 @@ function Register() {
 			navigate('/login');
 		}
 	}
-
+	const countries = [{ name: 'Spain' }, { name: 'Portugal' }];
+	console.log(country);
 	return (
 		<>
-			<h1>Register</h1>
-			<form onSubmit={handleSubmit}>
-				<label>Email:</label>
-				<br />
-				<input name='email' value={email} onChange={e => setEmail(e.target.value)} />
-				<br />
-				<label>Password:</label>
-				<br />
-				<input name='password' type='password' value={password} onChange={e => setPassword(e.target.value)} />
-				<br />
-				<label>Name:</label>
-				<br />
-				<input name='name' value={name} onChange={e => setName(e.target.value)} />
-				<br />
-				<label>Country:</label>
-				<br />
-				<input name='country' value={country} onChange={e => setCountry(e.target.value)} />
-				<br />
-				<button>Register</button>
-				<p>Already have an account?</p>
-				<Link to='/login'>
-					<button>Login</button>
-				</Link>
-			</form>
+			<div className='flex align-items-center justify-content-center mt-5'>
+				<div className='surface-card p-4 shadow-2 border-round w-full lg:w-6'>
+					<div className='text-center mb-5'>
+						<div className='text-900 text-3xl font-medium mb-3'>Register</div>
+						<span className='text-600 font-medium line-height-3'>Already have an account?</span>
+						<Link to='/login'>
+							<a className='font-medium no-underline ml-2 text-blue-500 cursor-pointer'>Sign In!</a>
+						</Link>
+					</div>
+
+					<div>
+						<form onSubmit={handleSubmit} className='w-full'>
+							<label htmlFor='email' className='block text-900 font-medium mb-2'>
+								Email
+							</label>
+							<InputText id='email' value={email} onChange={e => setEmail(e.target.value)} placeholder='Email' className='w-full mb-3' />
+
+							<label htmlFor='password' className='block text-900 font-medium mb-2'>
+								Password
+							</label>
+
+							<InputText id='password' type='password' placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} className='w-full mb-3' />
+							<label htmlFor='name' className='block text-900 font-medium mb-2'>
+								Name
+							</label>
+							<InputText id='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)} className='w-full mb-3' />
+							<label htmlFor='country' className='block text-900 font-medium mb-2'>
+								Name
+							</label>
+							<Dropdown value={country} onChange={e => setCountry(e.value)} options={countries} optionLabel='name' placeholder='Select a Country' className='w-full mb-3' optionValue='name' />
+
+							<Button label='Register' icon='pi pi-user' className='w-full' />
+						</form>
+					</div>
+				</div>
+			</div>
 		</>
 	);
 }

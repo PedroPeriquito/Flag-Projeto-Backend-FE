@@ -1,5 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { Toolbar } from 'primereact/toolbar';
+import { Avatar } from 'primereact/avatar';
+import { InputText } from 'primereact/inputtext';
+import { IconField } from 'primereact/iconfield';
+import { InputIcon } from 'primereact/inputicon';
+import { OverlayPanel } from 'primereact/overlaypanel';
+import { Button } from 'primereact/button';
 
 const Nav = () => {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -23,41 +30,60 @@ const Nav = () => {
 		navigate('/login');
 	}
 
+	const startContent = (
+		<Link to='/'>
+			<h1>The Movie Archive</h1>
+		</Link>
+	);
+
+	const centerContent = (
+		<form onSubmit={handleSubmit}>
+			<IconField iconPosition='left'>
+				<InputIcon className='pi pi-search'> </InputIcon>
+				<InputText v-model='value1' value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder='Search Movies' />
+			</IconField>
+		</form>
+	);
+
+	const op = useRef(null);
+
+	const endContent = (
+		<li>
+			{!isLoggedIn && (
+				<>
+					<Link to='/login'>
+						<button>Login</button>
+					</Link>
+					<Link to='/register'>
+						<button>Register</button>
+					</Link>
+				</>
+			)}
+			{isLoggedIn && (
+				<>
+					<Avatar icon='pi pi-user' size='xlarge' shape='circle' onClick={e => op.current.toggle(e)} />
+					<OverlayPanel ref={op}>
+						<div className='flex flex-column'>
+							<Link to='/watched'>
+								<Button label='Watched Movies' className='w-full mb-2' />
+							</Link>
+							<Link to='/plantowatch'>
+								<Button label='Watchlist' className='w-full mb-2' />
+							</Link>
+							<Link to='/changepassword'>
+								<Button label='Change Password' className='w-full mb-2' />
+							</Link>
+							<Button label='Logout' onClick={Logout} className='w-full' />
+						</div>
+					</OverlayPanel>
+				</>
+			)}
+		</li>
+	);
+
 	return (
 		<div>
-			<Link to='/'>
-				<button>Home</button>
-			</Link>
-			<form onSubmit={handleSubmit}>
-				<input type='text' value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder='Search Movies' />
-				<button type='submit'>Search</button>
-			</form>
-			<li>
-				{!isLoggedIn && (
-					<>
-						<Link to='/login'>
-							<button>Login</button>
-						</Link>
-						<Link to='/register'>
-							<button>Register</button>
-						</Link>
-					</>
-				)}
-				{isLoggedIn && (
-					<>
-						<Link to='/watched'>
-							<button>Watched Movies</button>
-						</Link>
-						<Link to='/plantowatch'>
-							<button>Watchlist</button>
-						</Link>
-						<Link to='/changepassword'>
-							<button>Change Password</button>
-						</Link>
-						<button onClick={Logout}>Logout</button>
-					</>
-				)}
-			</li>
+			<Toolbar start={startContent} center={centerContent} end={endContent} />
 		</div>
 	);
 };

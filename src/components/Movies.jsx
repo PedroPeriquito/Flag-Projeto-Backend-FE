@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
+
 
 function Movies() {
 	const navigate = useNavigate();
 	const [movies, setMovies] = useState([]);
 	const apiKey = import.meta.env.VITE_TMDB_KEY;
+	const baseUrl = import.meta.env.VITE_BASE_URL;
 	const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=${apiKey}`;
 
 	useEffect(() => {
@@ -15,7 +16,7 @@ function Movies() {
 	}, [url]);
 
 	function movieClick(movie) {
-		const apiUrl = 'http://localhost:3000/movies';
+		const apiUrl = `${baseUrl}/movies`;
 		/* 		const token = localStorage.getItem('token'); */
 		const body = {
 			idTMDB: movie.id.toString(),
@@ -45,7 +46,7 @@ function Movies() {
 
 	return (
 		<div>
-			<Navbar />
+		
 			<h1>Movies</h1>
 			<ul style={{ display: 'flex', flexWrap: 'wrap', padding: 0 }}>
 				{movies.map(movie => (

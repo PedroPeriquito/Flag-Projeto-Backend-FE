@@ -7,9 +7,12 @@ import Movie from './components/Movie';
 import Search from './components/Search';
 import Watched from './components/Watched';
 import PlanToWatch from './components/PlanToWatch';
+
+import Navbar from './components/Navbar';
 function App() {
 	return (
 		<BrowserRouter>
+			<Navbar />
 			<Routes>
 				<Route path='/' element={<Movies />} />
 				<Route path='/register' element={<Register />} />
