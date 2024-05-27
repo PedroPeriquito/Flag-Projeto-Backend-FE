@@ -21,9 +21,11 @@ function Movie() {
 	return (
 		<>
 			{movie != null && (
-				<div>
-					<img src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.title} />
-					<div className='surface-0'>
+				<div className='flex flex-wrap mt-5'>
+					<div className='flex mr-3'>
+						<img className='flex ' src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.title} className='w-full' />
+					</div>
+					<div className='w-full md:w-8 surface-0'>
 						<div className='font-medium text-3xl text-900 mb-3'>Movie Information</div>
 						<ul className='list-none p-0 m-0'>
 							<li className='flex align-items-center py-3 px-2 border-top-1 border-300 flex-wrap'>

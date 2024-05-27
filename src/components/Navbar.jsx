@@ -11,11 +11,11 @@ import { Button } from 'primereact/button';
 const Nav = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const navigate = useNavigate();
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [LoggedIn, setLoggedIn] = useState(false);
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
-		setIsLoggedIn(token);
+		setLoggedIn(token);
 	}, []);
 
 	function handleSubmit(event) {
@@ -26,7 +26,7 @@ const Nav = () => {
 		event.preventDefault();
 		localStorage.removeItem('token');
 		localStorage.removeItem('userId');
-		setIsLoggedIn(false);
+		setLoggedIn(false);
 		navigate('/login');
 	}
 
@@ -49,17 +49,17 @@ const Nav = () => {
 
 	const endContent = (
 		<li>
-			{!isLoggedIn && (
+			{!LoggedIn && (
 				<>
 					<Link to='/login'>
-						<button>Login</button>
+						<Button label='Login'></Button>
 					</Link>
 					<Link to='/register'>
-						<button>Register</button>
+						<Button label='Register'></Button>
 					</Link>
 				</>
 			)}
-			{isLoggedIn && (
+			{LoggedIn && (
 				<>
 					<Avatar icon='pi pi-user' size='xlarge' shape='circle' onClick={e => op.current.toggle(e)} />
 					<OverlayPanel ref={op}>

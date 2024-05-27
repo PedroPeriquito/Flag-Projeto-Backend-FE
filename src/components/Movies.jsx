@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 function Movies() {
 	const navigate = useNavigate();
 	const [movies, setMovies] = useState([]);
@@ -46,12 +45,11 @@ function Movies() {
 
 	return (
 		<div>
-		
-			<h1>Movies</h1>
-			<ul style={{ display: 'flex', flexWrap: 'wrap', padding: 0 }}>
+			<h1 className='flex justify-content-center'>Movies</h1>
+			<ul className='flex flex-wrap justify-content-center '>
 				{movies.map(movie => (
-					<li key={movie.id} onClick={() => movieClick(movie)}>
-						<img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} />
+					<li className='mx-5' key={movie.id} onClick={() => movieClick(movie)}>
+						<img className='border-round-md' src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} />
 						<p>
 							{movie.title} - {movie.vote_average.toFixed(1)}
 						</p>
