@@ -11,8 +11,8 @@ function Movie() {
 	const baseUrl = import.meta.env.VITE_BASE_URL;
 
 	useEffect(() => {
-		const url = `${baseUrl}/movies/${movieId}`;
-
+		const url = `${baseUrl}/movies/tmdb/${movieId}`;
+		console.log(url);
 		fetch(url)
 			.then(res => res.json())
 			.then(json => setMovie(json));
@@ -23,7 +23,7 @@ function Movie() {
 			{movie != null && (
 				<div className='flex flex-wrap mt-5'>
 					<div className='flex mr-3'>
-						<img className='flex ' src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.title} className='w-full' />
+						<img className='flex  ' src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.title} />
 					</div>
 					<div className='w-full md:w-8 surface-0'>
 						<div className='font-medium text-3xl text-900 mb-3'>Movie Information</div>

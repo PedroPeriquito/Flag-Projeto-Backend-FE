@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { Toolbar } from 'primereact/toolbar';
 import { Avatar } from 'primereact/avatar';
@@ -12,11 +12,12 @@ const Nav = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const navigate = useNavigate();
 	const [LoggedIn, setLoggedIn] = useState(false);
+	const location = useLocation();
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
 		setLoggedIn(token);
-	}, []);
+	}, [location]);
 
 	function handleSubmit(event) {
 		event.preventDefault();
