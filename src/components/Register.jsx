@@ -73,9 +73,9 @@ function Register() {
 							</label>
 							<InputText id='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)} className='w-full mb-3' />
 							<label htmlFor='country' className='block text-900 font-medium mb-2'>
-								Name
+								Country
 							</label>
-							<Dropdown value={country} onChange={e => setCountry(e.value)} options={countries} optionLabel='name' placeholder='Select a Country' className='w-full mb-3' optionValue='name' />
+							<Dropdown value={country} onChange={e => setCountry(e.value)} options={countries} optionLabel='Country' placeholder='Select a Country' className='w-full mb-3' optionValue='name' />
 
 							<Button label='Register' icon='pi pi-user' className='w-full' />
 						</form>
